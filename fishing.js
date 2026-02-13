@@ -1,4 +1,4 @@
-const SAVE_KEY = "darkstone_save_v1"; //0000
+const SAVE_KEY = "darkstone_save_v1"; //0000aerrererererererer
 
 function loadSave(){
   try { return JSON.parse(localStorage.getItem(SAVE_KEY) || "{}") || {}; }
