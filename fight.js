@@ -214,6 +214,13 @@ function rollZoneMythic(zoneId, heroLevel){
 function calcDamage(att, def){
   att = num(att, 0);
   def = num(def, 0);
+function roundXPNext(v){
+  v = Number(v) || 0;
+  if (v <= 0) return 0;
+
+  const step = (v >= 10000) ? 500 : 100;
+  return Math.ceil(v / step) * step;
+}
 
   // chip if you cannot penetrate defense
   if(att <= def){
@@ -664,6 +671,8 @@ function addHeroXP(xp){
     heroXP -= heroXPNext;
     heroLevel++;
     heroXPNext = Math.floor(heroXPNext * 1.5);
+  heroXPNext = roundXPNext(heroXPNext); // ✅ κάνει το target “ωραίο”
+
 
     baseAtk += 5;
     baseDef += 5;

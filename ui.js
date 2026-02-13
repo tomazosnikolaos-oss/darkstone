@@ -42,6 +42,16 @@
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
   const stripPlus = (name) => String(name || "").replace(/\s*\+\d+$/, "");
+  // ✅ Round XPNext to "nice" numbers (persisted)
+  function roundXPNext(v){
+    v = Number(v) || 0;
+    if (v <= 0) return 0;
+
+    // 10k+ -> 500 steps (11253 -> 11500)
+    // κάτω από 10k -> 100 steps
+    const step = (v >= 10000) ? 500 : 100;
+    return Math.ceil(v / step) * step;
+  }
 
   function loadSave() {
     try { return JSON.parse(localStorage.getItem(SAVE_KEY) || "{}") || {}; }
@@ -99,8 +109,9 @@
     for (const k of slots) if (!(k in s.equipment)) s.equipment[k] = null;
 
     s.heroLevel = num(s.heroLevel, 1);
-    s.heroXP = num(s.heroXP, 0);
-    s.heroXPNext = Math.max(1, num(s.heroXPNext, 100));
+    s.heroXP = Math.max(0, Math.round(num(s.heroXP, 0)));
+s.heroXPNext = Math.max(1, Math.round(num(s.heroXPNext, 100)));
+s.heroXPNext = roundXPNext(s.heroXPNext); // ✅ persist “στρογγυλό”
 
     // ===== Fishing =====
     s.fishingLevel = num(s.fishingLevel, 1);
@@ -432,7 +443,8 @@
               </div>
 
               <div class="dsBarWrap" title="Hero XP (Fights)">
-                <div class="dsBarFill" style="width:${xpPct}%;background:#7dff9f;"></div>
+                <div class="dsBarFill" style="width:${xpPct}%;background:#4aa3ff
+;"></div>
                 <div class="dsBarTextIn">XP ${xpNow}/${xpNext}</div>
               </div>
             </div>
