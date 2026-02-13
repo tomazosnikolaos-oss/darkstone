@@ -1,4 +1,4 @@
-// dungeon.js — Darkstone Chronicles (Dungeons: entry + run)
+// dungeon.js — Darkstone Chronicles (Dungeons: entry + run) //668
 // Works on:
 // - dungeon.html (list)  -> DS_DUNGEON.enterCrypt()
 // - dungeon_run.html (battle) -> auto-start if active run exists
