@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Market</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1>🛒 Market</h1>
+
+      <div style="width:90%;max-width:700px;margin:0 auto 12px;display:flex;gap:10px;justify-content:center;">
+        <button id="backBtn">⬅ Back</button>
+      </div>
+
+      <div style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;max-width:900px;margin:0 auto;">
+        <h2 style="margin-top:0;">Ranged Supplies</h2>
+
+        <div style="display:flex;gap:12px;align-items:center;background:#0f0f16;border:1px solid #2a2a3a;border-radius:12px;padding:12px;">
+          <img src="images/items/arrows.png" alt="Arrows"
+               style="width:64px;height:64px;border-radius:12px;border:2px solid #333;object-fit:cover;background:#000;">
+          <div style="flex:1;">
+            <div style="font-weight:900;font-size:18px;">Arrows x100</div>
+            <div style="opacity:.85;margin-top:4px;">Price: <b>10 gold</b></div>
+            <div style="opacity:.8;margin-top:4px;font-size:12px;">(Click items on the right inventory to inspect / sell / bank.)</div>
+          </div>
+          <button id="buyArrowsBtn">Buy</button>
+        </div>
+
+        <div id="shopMsg" style="margin-top:10px;opacity:.9;"></div>
+      </div>
+    </div>
+
+    <div id="inventoryPanel"></div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="market.js"></script>
+</body>
+</html>

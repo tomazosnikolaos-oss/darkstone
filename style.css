@@ -1,0 +1,260 @@
+/* =========================================================
+   Darkstone Chronicles — style.css (clean / ui.js friendly)
+   - Keeps pages consistent
+   - Avoids conflicts with ui.js injected HUD + inventory styles
+   ========================================================= */
+
+:root{
+  --bg: #0d0d15;
+  --panel: #151520;
+  --panel2: #0f0f16;
+  --text: #eee;
+  --muted: rgba(255,255,255,.78);
+  --border: #333;
+  --border2: #2a2a3a;
+  --btn: #1b1b24;
+  --btnHover: #222233;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  padding: 0;               /* ui.js already adds layout padding */
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.35;
+}
+
+/* Links */
+a{ color: #b7ffcf; text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* Headings inside left panel */
+#leftPanel h1{
+  margin: 0 0 12px 0;
+  font-size: 26px;
+  letter-spacing: .2px;
+}
+
+/* Optional: make the left panel content feel like a “card”
+   (Inspector already has its own box, this just improves normal pages) */
+#leftPanel{
+  background: rgba(21,21,32,.35);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+/* Action buttons (Home page etc.) */
+#actions{
+  margin: 14px 0 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#actions button{
+  padding: 10px 16px;
+  font-size: 15px;
+  background: var(--btn);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: filter .15s ease, transform .05s ease, background .15s ease;
+}
+
+#actions button:hover{
+  background: var(--btnHover);
+  filter: brightness(1.06);
+}
+
+#actions button:active{
+  transform: translateY(1px);
+}
+
+#actions button:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+/* Log (Home page etc.) */
+#log{
+  width: 100%;
+  margin: 12px auto 0;
+  height: 190px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 10px;
+
+  background: rgba(0,0,0,0.28);
+  text-align: left;
+}
+
+.log-item{
+  font-size: 13px;
+  line-height: 1.35;
+  padding: 7px 9px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 8px;
+
+  white-space: normal;
+  word-break: break-word;
+
+  opacity: .98;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.log-item.new{
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.log-item.fade-out{
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* Paperdoll (equipment page) — keep your absolute layout */
+#paperdoll{ position: relative; }
+
+#paperdoll .pdSlot{
+  position: absolute !important;
+  width: 64px;
+  height: 64px;
+  transform: translateX(-50%);
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid rgba(120,120,160,.65);
+  background: rgba(15,15,22,.25);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+#paperdoll .pdEmpty{
+  font-size: 11px;
+  opacity: .85;
+  text-align: center;
+  line-height: 1.05;
+  padding: 0 4px;
+}
+
+/* Small screens */
+@media (max-width: 980px){
+  #leftPanel{
+    padding: 12px;
+  }
+}
+.townCard{
+  background:#151520;
+  border:2px solid #333;
+  border-radius:12px;
+  padding:12px;
+  text-align:left;
+}
+
+.townTitle{
+  font-weight:900;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.townDesc{
+  opacity:.85;
+  font-size:13px;
+  margin-bottom:10px;
+  line-height:1.35;
+}
+
+.townBtn{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:2px solid #333;
+  background:#1b1b24;
+  color:#fff;
+  cursor:pointer;
+}
+.townBtn:hover{ filter:brightness(1.08); }
+/* ===== FIX: Inventory panel inside ui.js grid ===== */
+#mainLayout #inventoryPanel{
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+#mainLayout #inventoryGrid{
+  justify-content: flex-start !important;
+}
+
+/* ===== GLOBAL BACKGROUND (ROBUST) ===== */
+html{
+  min-height: 100%;
+  background-color: #0b0b10; /* fallback */
+  background-image: url("./images/bg/main_bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* static everywhere */
+}
+
+body{
+  min-height: 100%;
+  background: transparent; /* άσε να φαίνεται το html bg */
+}
+
+/* dark overlay + vignette για να “δέσει” και να μην χαλάει το UI */
+html::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+    /* πιο φωτεινό overlay */
+   background: rgba(0,0,0,0.22);
+  z-index: 0;
+}
+
+/* σιγουρευόμαστε ότι όλα τα UI είναι πάνω από το overlay */
+#hudRoot, #mainLayout{
+  position: relative;
+  z-index: 1;
+}
+/* ===== INVENTORY: 8 columns, NO scrollbars ===== */
+#inventoryPanel{
+  overflow: visible !important;
+}
+
+#inventoryGrid{
+  /* 8 slots per row */
+  grid-template-columns: repeat(9, 40px) !important;
+
+  /* no scrollbars at all */
+  max-height: none !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+
+  /* keep it aligned nicely */
+  justify-content: flex-start !important;
+}
+
+/* προαιρετικό: μην αφήνεις το layout να δημιουργεί horizontal page scroll */
+html, body{
+  overflow-x: hidden;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Mining</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1>⛏️ Mining</h1>
+
+      <div style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;max-width:900px;margin:0 auto 12px;">
+        <div style="font-weight:700;margin-bottom:6px;">Your Mining Level: <span id="mineLevel">1</span></div>
+
+        <div style="font-size:12px;opacity:.85;display:flex;justify-content:space-between;gap:12px;">
+          <span>Mining XP</span>
+          <span><span id="mineXPCurrent">0</span>/<span id="mineXPNext">100</span></span>
+        </div>
+        <div style="height:12px;background:#0f0f16;border:1px solid #2a2a3a;border-radius:999px;overflow:hidden;margin-top:6px;">
+          <div id="mineXPBar" style="height:100%;width:0%;background:#ffaa00;"></div>
+        </div>
+      </div>
+
+      <div style="max-width:900px;margin:0 auto;">
+        <h2 style="margin:0 0 10px;">Choose an Ore</h2>
+
+        <div id="oreGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;"></div>
+      </div>
+    </div>
+
+    <div id="inventoryPanel">
+      <div class="invHeader">
+<div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="mining.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Dungeons</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1>🏰 Dungeons</h1>
+
+      <div style="width:90%;max-width:600px;margin:0 auto 12px;display:flex;gap:10px;justify-content:center;">
+        <button id="backBtn">⬅ Back</button>
+      </div>
+
+      <div style="width:90%;max-width:900px;margin:0 auto;">
+        <h2>Available Dungeons</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+          <div id="cryptCard"
+               style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;cursor:pointer;text-align:left;">
+            <div style="display:flex;gap:12px;align-items:center;">
+              <img src="images/dungeons/crypt_thumb.png" alt="Whispering Crypt"
+                   style="width:96px;height:96px;border-radius:10px;border:2px solid #333;object-fit:cover;">
+              <div style="flex:1;">
+                <div style="font-size:18px;font-weight:bold;">Whispering Crypt</div>
+                <div style="opacity:.9;margin-top:4px;">Entry Cost: <b>20 Stamina</b></div>
+                <div style="opacity:.85;font-size:13px;margin-top:6px;line-height:1.35;">
+                  6 waves → Boss. No drops from mobs. Rare set drops at the end.
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end;">
+              <button id="enterBtn">🚪 Enter</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="msg" style="margin-top:10px;text-align:center;opacity:.9;"></div>
+      </div>
+    </div>
+
+    <div id="inventoryPanel">
+      <div class="invHeader">
+        <div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="dungeon.js"></script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const msgEl = document.getElementById("msg");
+      const enterBtn = document.getElementById("enterBtn");
+      const cryptCard = document.getElementById("cryptCard");
+
+      document.getElementById("backBtn")?.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      function setMsg(t){
+        if(msgEl) msgEl.textContent = t || "";
+      }
+
+      function doEnter(){
+        // Αν dungeon.js δεν φορτώθηκε, θα το δεις εδώ καθαρά
+        if(!window.DS_DUNGEON || typeof window.DS_DUNGEON.enterCrypt !== "function"){
+          setMsg("❌ dungeon.js δεν φορτώθηκε (DS_DUNGEON missing). Έλεγξε ότι υπάρχει dungeon.js στο ίδιο folder και το name είναι σωστό.");
+          return;
+        }
+
+        enterBtn.disabled = true;
+        setMsg("⏳ Preparing for battle...");
+
+        const res = window.DS_DUNGEON.enterCrypt();
+
+        if(!res || !res.ok){
+          setMsg((res && res.msg) ? res.msg : "❌ Cannot enter.");
+          enterBtn.disabled = false;
+          return;
+        }
+
+        // redirect
+        window.location.href = "dungeon_run.html";
+      }
+
+      enterBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        doEnter();
+      });
+
+      cryptCard?.addEventListener("click", (e) => {
+        if(e.target && e.target.tagName === "BUTTON") return;
+        doEnter();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Whispering Crypt</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+
+      <h1>🏰 Whispering Crypt</h1>
+
+      <div id="battleWrap" style="width:90%;max-width:700px;margin:18px auto;">
+
+        <h2 style="margin:0 0 10px 0;display:flex;align-items:center;justify-content:space-between;">
+          <span id="stageTitle">Waves</span>
+        </h2>
+
+        <!-- VS CARD -->
+        <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#151520;border-radius:12px;border:2px solid #333;padding:12px;">
+
+          <!-- ✅ discreet timer (absolute) -->
+          <div style="position:absolute;right:10px;top:10px;opacity:.72;font-size:12px;display:flex;align-items:center;gap:6px;pointer-events:none;">
+            <span>⏱</span>
+            <span id="runTimer" style="font-weight:800;letter-spacing:.4px;">00:00</span>
+          </div>
+
+          <div style="flex:1;text-align:center;">
+            <img id="heroImg" src="images/hero.png" alt="Hero"
+                 style="width:90px;height:90px;border-radius:10px;border:2px solid #333;object-fit:cover;">
+            <div id="heroInfo" style="margin-top:8px;font-size:14px;"></div>
+            <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;">
+              <div id="heroHpBar" style="height:100%;width:100%;border-radius:6px;"></div>
+            </div>
+            <div id="heroHpText" style="margin-top:4px;font-size:12px;opacity:.9;"></div>
+          </div>
+
+          <div style="font-size:28px;font-weight:bold;opacity:.9;">VS</div>
+
+          <div style="flex:1;text-align:center;">
+            <img id="mobImg" src="" alt="Mob"
+                 style="width:90px;height:90px;border-radius:10px;border:2px solid #333;object-fit:cover;">
+            <div id="mobInfo" style="margin-top:8px;font-size:14px;"></div>
+            <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;">
+              <div id="mobHpBar" style="height:100%;width:100%;border-radius:6px;"></div>
+            </div>
+            <div id="mobHpText" style="margin-top:4px;font-size:12px;opacity:.9;"></div>
+          </div>
+
+        </div>
+
+        <!-- cooldown bar (ONLY ONCE) -->
+        <div id="cooldownWrap" style="margin-top:12px;display:none;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;opacity:.9;">
+            <span id="cooldownLabel">Next</span>
+            <span id="cooldownText">6.0s</span>
+          </div>
+          <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;overflow:hidden;">
+            <div id="cooldownBar" style="height:100%;width:0%;border-radius:6px;"></div>
+          </div>
+        </div>
+
+        <div id="battleLog" style="margin-top:12px;"></div>
+      </div>
+
+    </div>
+
+    <!-- ✅ inventory MUST be sibling of leftPanel -->
+    <div id="inventoryPanel">
+      <div class="invHeader">
+        <div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="dungeon.js"></script>
+</body>
+</html>

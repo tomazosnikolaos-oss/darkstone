@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darkstone Chronicles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1 style="margin-bottom:6px;">Darkstone Chronicles</h1>
+      <div style="opacity:.85;margin-bottom:14px;">
+        Welcome back to town. Choose your next path.
+      </div>
+
+      <div style="max-width:900px;margin:0 auto 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+        <div class="townCard">
+          <div class="townTitle">⚔️ Fight</div>
+          <div class="townDesc">Earn Hero XP, gold and rare drops.</div>
+          <button class="townBtn" id="goFight">Go to Fight</button>
+        </div>
+<div class="townCard">
+  <div class="townTitle">🏰 Dungeons</div>
+  <div class="townDesc">Enter the Whispering Crypt. 6 waves → boss. Rare set drops.</div>
+  <button class="townBtn" id="goDungeons">Enter Dungeons</button>
+</div>
+
+        <div class="townCard">
+          <div class="townTitle">⛏️ Mining</div>
+          <div class="townDesc">Gather ores for crafting and upgrades.</div>
+          <button class="townBtn" id="goMine">Go to Mining</button>
+        </div>
+
+        <div class="townCard">
+          <div class="townTitle">⚒️ Forge</div>
+          <div class="townDesc">Smelt bars and prepare upgrade materials.</div>
+          <button class="townBtn" id="goForge">Go to Forge</button>
+        </div>
+<div class="townCard">
+  <div class="townTitle">🎣 Fishing</div>
+  <div class="townDesc">Catch fish in different regions and stock your supplies.</div>
+  <button class="townBtn" id="goFish">Go to Fishing</button>
+</div>
+
+<div class="townCard">
+  <div class="townTitle">🏹 Hunting</div>
+  <div class="townDesc">Hunt wild beasts every 6 seconds and gather raw meat for cooking.</div>
+  <button class="townBtn" id="goHunt">Go to Hunting</button>
+</div>
+
+<div class="townCard">
+  <div class="townTitle">🍳 Cooking</div>
+  <div class="townDesc">Cook fish into meals and restore HP.</div>
+  <button class="townBtn" id="goCook">Go to Cooking</button>
+</div>
+
+        <div class="townCard">
+          <div class="townTitle">🛒 Market</div>
+          <div class="townDesc">Sell loot and manage your gold.</div>
+          <button class="townBtn" id="goMarket">Go to Market</button>
+        </div>
+
+        <div class="townCard">
+          <div class="townTitle">🛡 Equipment</div>
+          <div class="townDesc">Equip gear and improve your stats.</div>
+          <button class="townBtn" id="goEquip">Open Equipment</button>
+        </div>
+      </div>
+
+      <h2 style="margin:10px 0 10px;">Town Log</h2>
+      <div id="log"></div>
+    </div>
+
+    <div id="inventoryPanel">
+      <div class="invHeader">
+        <div class="invTitle">
+          <span id="invTitleText">Inventory</span>
+          <span id="invCap" style="opacity:.85;font-size:12px;"></span>
+        </div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

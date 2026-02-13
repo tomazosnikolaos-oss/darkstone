@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Forge Action</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1>⚒️ Forge</h1>
+
+      <div style="width:90%;max-width:700px;margin:0 auto 12px;display:flex;gap:10px;justify-content:center;">
+        <button id="backBtn">⬅ Back</button>
+        <button id="startBtn">▶ Start</button>
+        <button id="stopBtn" disabled>⏹ Stop</button>
+      </div>
+
+      <div style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;max-width:900px;margin:0 auto 12px;">
+        <div style="font-weight:700;margin-bottom:6px;">
+          Your Blacksmith Level: <span id="bsLevel">1</span>
+        </div>
+
+        <div style="font-size:12px;opacity:.85;display:flex;justify-content:space-between;gap:12px;">
+          <span>Blacksmith XP</span>
+          <span><span id="bsXPCurrent">0</span>/<span id="bsXPNext">100</span></span>
+        </div>
+        <div style="height:12px;background:#0f0f16;border:1px solid #2a2a3a;border-radius:999px;overflow:hidden;margin-top:6px;">
+          <div id="bsXPBar" style="height:100%;width:0%;background:#7dff9f;"></div>
+        </div>
+      </div>
+
+      <div style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;max-width:900px;margin:0 auto;">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <img id="barImg" src="" alt="Bar" style="width:74px;height:74px;border-radius:12px;border:2px solid #333;object-fit:cover;background:#0f0f16;">
+          <div style="flex:1;">
+            <div style="font-weight:800;font-size:18px;" id="barName">Bar</div>
+            <div style="opacity:.85;font-size:12px;margin-top:4px;">Action every 6 seconds</div>
+            <div id="barReq" style="opacity:.85;font-size:12px;margin-top:4px;"></div>
+
+            <div id="timerWrap" style="margin-top:10px;display:none;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;opacity:.9;">
+                <span>Smelting...</span>
+                <span id="timerText">6.0s</span>
+              </div>
+              <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;overflow:hidden;">
+                <div id="timerBar" style="height:100%;width:0%;border-radius:6px;background:linear-gradient(90deg,#7dff9f,#2dff7c);"></div>
+              </div>
+            </div>
+
+            <!-- Target Smelting -->
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+              <div style="opacity:.85;font-size:12px;">Target amount:</div>
+              <input id="targetInput" type="number" min="1" step="1" placeholder="e.g. 100"
+                style="width:120px;padding:8px 10px;border-radius:10px;border:2px solid #333;background:#0f0f16;color:#fff;">
+              <button id="targetBtn">🎯 Smelt Target</button>
+              <div id="targetStatus" style="opacity:.85;font-size:12px;"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="msg" style="margin-top:12px;opacity:.9;"></div>
+      </div>
+    </div>
+
+    <div id="inventoryPanel">
+      <div class="invHeader">
+        <div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="forge_action.js"></script>
+</body>
+</html>

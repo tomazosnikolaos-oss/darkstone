@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upgrade Station — Darkstone Chronicles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="hudRoot"></div>
+
+  <div id="mainLayout">
+    <div id="leftPanel">
+      <h1>🛠️ Upgrade Station</h1>
+
+      <div style="background:#151520;border:2px solid #333;border-radius:12px;padding:12px;margin-top:12px;">
+        <div style="font-weight:900;font-size:16px;margin-bottom:8px;">Selected Item</div>
+
+        <div id="selWrap" style="display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;">
+          <img id="selImg" src="" alt="" style="width:84px;height:84px;border-radius:12px;border:2px solid #333;object-fit:cover;background:#0f0f16;display:none;">
+          <div style="min-width:260px;">
+            <div id="selName" style="font-weight:900;font-size:18px;">No item selected</div>
+            <div id="selInfo" style="opacity:.85;margin-top:4px;">Open an item Inspector → “Upgrade Station”.</div>
+            <div id="selStats" style="opacity:.9;margin-top:6px;">—</div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:12px 0;">
+
+        <div style="font-weight:900;margin-bottom:8px;">Requirements</div>
+        <div style="opacity:.9;margin-bottom:8px;">
+          Iron Bar: <b><span id="needIron">0</span></b> (you have <span id="haveIron">0</span>)<br>
+          Coal: <b><span id="needCoal">0</span></b> (you have <span id="haveCoal">0</span>)
+        </div>
+
+        <div style="opacity:.9;margin-bottom:10px;">
+          Success chance: <b><span id="chanceText">—</span></b>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+          <button id="btnUpgrade" disabled>⬆️ Upgrade</button>
+          <button id="btnBack">⬅ Back</button>
+        </div>
+
+        <div id="upMsg" style="margin-top:10px;opacity:.92;text-align:center;"></div>
+      </div>
+    </div>
+
+    <div id="inventoryPanel">
+      <div class="invHeader">
+        <div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <script src="ui.js"></script>
+  <script src="upgrade_station.js"></script>
+</body>
+</html>

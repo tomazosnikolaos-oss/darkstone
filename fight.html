@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Darkstone Chronicles — Fight</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- HEADER (Hero panel + nav) rendered by ui.js -->
+  <div id="hudRoot"></div>
+
+  <!-- BODY (2 columns) -->
+  <div id="mainLayout">
+    <!-- LEFT: Fight content -->
+    <div id="leftPanel">
+
+      <h1>⚔️ Fight</h1>
+
+      <div style="width:90%;max-width:600px;margin:0 auto 12px;display:flex;gap:10px;justify-content:center;">
+        <button id="backBtn">⬅ Back</button>
+        <button id="toZonesBtn">🗺 Zones</button>
+      </div>
+
+      <div id="cooldownWrap" style="margin-top:12px;display:none;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;opacity:.9;">
+          <span>Next attack</span>
+          <span id="cooldownText">6.0s</span>
+        </div>
+        <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;overflow:hidden;">
+          <div id="cooldownBar" style="height:100%;width:0%;border-radius:6px;"></div>
+        </div>
+      </div>
+
+      <!-- ZONES -->
+      <div id="zonesWrap" style="width:90%;max-width:900px;margin:0 auto;">
+        <h2>Choose a Zone</h2>
+        <div id="zonesGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;"></div>
+      </div>
+
+      <!-- MOBS -->
+      <div id="mobsWrap" style="width:90%;max-width:900px;margin:18px auto;display:none;">
+        <h2 id="zoneTitle">Zone</h2>
+        <div id="mobsGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;"></div>
+      </div>
+
+      <!-- BATTLE -->
+      <div id="battleWrap" style="width:90%;max-width:700px;margin:18px auto;display:none;">
+        <h2>Battle</h2>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#151520;border-radius:12px;border:2px solid #333;padding:12px;">
+          <div style="flex:1;text-align:center;">
+            <img id="heroImg" src="images/hero.png" alt="Hero" style="width:90px;height:90px;border-radius:10px;border:2px solid #333;object-fit:cover;">
+            <div id="heroInfo" style="margin-top:8px;font-size:14px;"></div>
+            <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;">
+              <div id="heroHpBar" style="height:100%;width:100%;border-radius:6px;"></div>
+            </div>
+            <div id="heroHpText" style="margin-top:4px;font-size:12px;opacity:.9;"></div>
+          </div>
+
+          <div style="font-size:28px;font-weight:bold;opacity:.9;">VS</div>
+
+          <div style="flex:1;text-align:center;">
+            <img id="mobImg" src="" alt="Mob" style="width:90px;height:90px;border-radius:10px;border:2px solid #333;object-fit:cover;">
+            <div id="mobInfo" style="margin-top:8px;font-size:14px;"></div>
+            <div style="height:10px;background:#222;border:1px solid #333;border-radius:6px;margin-top:6px;">
+              <div id="mobHpBar" style="height:100%;width:100%;border-radius:6px;"></div>
+            </div>
+            <div id="mobHpText" style="margin-top:4px;font-size:12px;opacity:.9;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
+          <button id="attackBtn">🗡 Attack</button>
+          <button id="runBtn">🏃 Run</button>
+        </div>
+
+        <div id="battleLog" style="margin-top:12px;"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Inventory (shared) -->
+    <div id="inventoryPanel">
+      <div class="invHeader">
+<div class="invTitle"><span id="invTitleText">Inventory</span></div>
+        <div class="invGold">💰 <span id="goldValue">0</span></div>
+      </div>
+      <div id="inventoryGrid"></div>
+    </div>
+  </div>
+
+  <!-- scripts (load ONCE) -->
+  <script src="ui.js"></script>
+  <script src="fight.js"></script>
+</body>
+</html>
