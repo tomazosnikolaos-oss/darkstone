@@ -670,8 +670,11 @@ function addHeroXP(xp){
   while(heroXP >= heroXPNext){
     heroXP -= heroXPNext;
     heroLevel++;
-    heroXPNext = Math.floor(heroXPNext * 1.5);
-  heroXPNext = roundXPNext(heroXPNext); // ✅ κάνει το target “ωραίο”
+heroXPNext = Math.floor(heroXPNext * 1.5);
+heroXPNext = Math.floor(heroXPNext * 1.5);
+if (typeof roundXPNext === "function") heroXPNext = roundXPNext(heroXPNext);
+
+  
 
 
     baseAtk += 5;
